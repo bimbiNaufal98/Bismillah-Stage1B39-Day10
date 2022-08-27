@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/Assets/css/index.css">
+    <!-- index css harus ditaruk dibawah dari link bootstrap nya, agar urutannya sesuai -->
+    <title>Selamat Datang Day9</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <img src="/Assets/image/logo Dumbwaysid.png" style="width: 60px; margin-right: 35px;"/>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-home" aria-current="page" href="/">Home</a>
+                            <!-- nav link active utk membuat link menjadi aktif terus, saat tidak di klik pun menyala -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-orange" href="/myproject">Add Project</a>
+                        </li>
+                    </ul>
+                    <a href="/contact" class="bg-orange text-light px-1"><span>Contact Me</span></a>
+                    <!-- p itu adalah padding, px itu padding kanan kiri, py itu padding atas bawah, dan maksimal semua di 5 -->
+                </div>
+            </div>
+    </nav>
+        <div class="skill-container1">
+            <div class="skill-container2">
+                <div class="skill-container2-3">
+                    {{!-- glowing text di w3schools --}}
+                    <h1 class="glow"
+                        style="color: rgb(0, 0, 0); font-weight: bold; text-align: left; padding-left: 19px; padding-right: 10px; margin-bottom: 25px; margin-top: 0px;">
+                        Hi! Welcome to my personal web ~</h1>
+                    <p style="text-align: justify; padding-left: 20px; padding-right: 20px; margin-top: 15px; margin-bottom: 40px;">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quibusdam maxime iure
+                        sapiente magnam natus odio voluptatum magni quae accusamus, odit ratione nam perspiciatis
+                        rerum dicta atque voluptatibus dolore pariatur. Lorem ipsum dolor sit amet consectetur
+                        Cupiditate dolore, dolor ipsum cumque quam sit incidunt voluptatum omnis laborum....
+                    </p>
+                    <div class="kanan-kiri">
+                        <div>
+                            <button onclick="window.location.href='https://wa.me/6285731836207/'"
+                                class="bg-color" title="Menuju no.Whatsapp" style="width: 100px; height: 35px; margin: 5px 20px 5px 20px; cursor: pointer;">Contact</button>
+                        </div>
+                        <div>
+                            <div style=" margin: 10px 5px;">
+                                download cv
+                                <a href="https://drive.google.com/file/d/1eK6PzYIvcpVRHGqbm6YT-GWIYxT1UnKL/view?usp=sharing"
+                                    target="blank"><img src="/Assets/image/iconDownload.png"
+                                        style="width: 18px; height: 18px" /></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="favicon">
+                        <a href="https://linkedin.com/" style="text-decoration: none;" target="_blank">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.instagram.com/p/CYzTBBEvmUJZsbdtQTPRK4MaJ4lGNbfhaiSau80/?igshid=YmMyMTA2M2Y=" style="text-decoration: none;" target="_blank">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/bimbi.naufal/" style="text-decoration: none;" target="_blank">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a href="https://twitter.com/" style="text-decoration: none;" target="_blank">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-container3" >
+                <table style="
+                        border: none solid rgb(163, 163, 163);
+                        box-shadow: 0px 10px 20px grey;
+                        width: 20px;
+                        height: 40px;">
+                    <tr>
+                        <th>
+                            <div style="width: 250px; height: 370px; overflow: hidden; position: relative; border-radius: 10px;">
+                            <img src="/Assets/image/profil2.jpg" alt="Foto closeup 4*6 Bimbi Naufal" style="max-width: 100%;" />
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2 style="
+                                text-align:center;
+                                font-size: 38px;
+                                font-weight: bold;
+                                margin: 1px;">Bimbi Naufal</h2>
+                            <div style="
+                                text-align:center;
+                                margin: 1px 15px 15px 15px;">Junior Fullstack Developer
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="my-project">
+        <h2 style="text-align: center; margin-top: 55px; padding-top: 40px; padding-bottom: 50px;">"My Project"</h2>
+            <div class="blog-detail-satu">
+                {{#each dataBlog}}
+                <a href="/myproject-detail/{{this.id}}" title="Read more" target="_blank" class="text-decoration-none">
+                {{!-- kenapa pakai this.id bukan @index, karena utk get data id di postgreySQL --}}
+                <div class="blog-detail-container-satu">
+                    <div style="width: 350px; height: 300px; overflow: hidden; position: relative; margin: 15px; border-radius: 10px;">
+                        <img src="/Assets/image/gambar 6.jpg" style="max-width: 100%; position: absolute;">
+                    </div>
+                    <p id="input-project-name" style="margin-right: 13px; margin-top: 10px; margin-left: 13px; margin-bottom: 0px; font-size: 25px; font-family: 'Segoe UI'; font-weight: bold;"><a href="/myproject-detail/{{this.id}}" target="_blank" title="Read more" class="text-decoration-none"><span style="color:black;">{{this.name}}</span></a></p>
+                    <div class="durasi" style="margin-top: 0px; margin-left: 15px; margin-bottom: 0px; font-size: 12px; color: grey">Show Post : {{this.postAt}}</div>
+                    <div class="deskripsi">
+                        <p style="
+                            margin-top: 20px; margin-left: 13px; margin-right: 50px; text-align: justify; font-size: 16px; font-family: 'Segoe UI';">
+                        <b>بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</b>
+                        </p>
+                        <div class="d-inline-block text-truncate" style="margin-top: 20px; margin-left: 13px; margin-right: 50px; text-align: justify; font-size: 16px; font-family: 'Segoe UI'; max-width: 320px;">
+                            {{this.description}}
+                        </div>
+                    </div>
+                    <div>
+                    {{#each technologies}}
+                        <span><i style="margin-left: 13px; margin-top: 20px; margin-left: 20px; font-size: 30px;" class="fa-brands {{this}}"></i></span>
+                    {{/each}}
+                    </div>
+                    <div style="text-align: right; margin-top: 10px; margin-right: 20px;">
+                    <span style="font-size:12px; color: grey;">Start date : {{this.start_date}}</span>
+                    <span style="font-size:12px; color: grey;">- End date : {{this.end_date}}</span>
+                    </div>
+                    <div style="text-align: right; margin-top: 0px; margin-right: 20px;">
+                    <span style="font-size:12px; color: grey;">Duration : {{this.duration}}</span>
+                    </div>
+                    <div class="edit-dan-delete">
+                        <div class="edit-satu">
+                            <a href="/update-myproject/{{this.id}}">
+                                <button type="button" class="black">edit</button>
+                            </a>
+                        </div>
+                        <div class="edit-dua">
+                            <a href="/delete-blog/{{this.id}}"> 
+                            <button type="button" class="black2">delete</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                </a>
+                {{/each}}
+            </div>
+        </div>
+        <div class="spinner"></div>
+        <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="arrow up"></i></button>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="/Assets/js/home.js"></script>
+</body>
+</html>

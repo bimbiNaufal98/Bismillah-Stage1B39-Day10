@@ -1,0 +1,27 @@
+{
+  "name": "day9",
+  "version": "1.0.0",
+  "description": "Bismillah",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bimbiNaufal98/Bismillah-Stage1B39-Day9.git"
+  },
+  "author": "Bimbi Naufal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bimbiNaufal98/Bismillah-Stage1B39-Day9/issues"
+  },
+  "homepage": "https://github.com/bimbiNaufal98/Bismillah-Stage1B39-Day9#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "hbs": "^4.2.0",
+    "pg": "^8.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}

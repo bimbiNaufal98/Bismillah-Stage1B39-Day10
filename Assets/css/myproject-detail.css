@@ -1,0 +1,141 @@
+body {
+    margin: 0px;
+    background-color: rgb(226, 226, 226);
+}
+
+nav {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    height: 10vh auto;
+}
+
+.navbar-top-left {
+    display: flex;
+    padding-top: 1px;
+    flex: 50%;
+    align-items: center;
+}
+
+.navbar-top-left img {
+    padding-left: 87px;
+    width: 60px;
+    height: 40px;
+}
+
+.navbar-top-left li {
+    display: inline; /* untuk menghilangkan tanda unordered listnya*/
+}
+
+.navbar-top-left ul li a {
+    text-decoration: none;
+    font-size: 20px; 
+    font-family: 'Segoe UI';
+    color: black;
+    background: rgb(255, 255, 255);
+    padding: 0px;
+    margin: 30px;
+}
+
+.navbar-top-right {
+    color: black;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex: 50%;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 86px;
+}
+
+.navbar-top-right a {
+    text-decoration: none;
+    color: whitesmoke;
+    background-color: black;
+    padding: 5px 20px 8px 20px;
+    border-radius: 10px;
+    font-family: 'Segoe UI';
+    font-size: 15px;
+}
+
+.judul {
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.blog-detail-1 {
+    display: flex;
+    /* background-color: red; */
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.blog-detail-1 img {
+    margin-left: 20px;
+}
+
+.blog-detail-isi {
+    /* background-color: yellow; */
+    margin-left: 30px;
+}
+
+.blog-detail-2 p {
+    /* background-color: red; */
+    margin-top: 40px;
+    padding-left: 120px;
+    padding-right: 120px;
+    text-align: justify;
+    text-indent: 30px;
+    margin-bottom: 50px;
+}
+
+.text-home {
+    font-size: 17px;
+    font-family: 'Segoe UI';
+    margin-right: 15px;
+}
+.text-orange {
+    font-family: 'Segoe UI';
+    font-size: 17px;
+}
+
+.bg-orange {
+    background-color: orangered;
+    font-family: 'Segoe UI';
+    border: none;
+    border-radius: 4px;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 5px;
+    height: 35px;
+    width: 130px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.bg-orange span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.bg-orange span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -10px;
+    transition: 0.5s;
+}
+
+.bg-orange:hover span {
+    padding-right: 15px;
+}
+
+.bg-orange:hover span:after {
+    opacity: 1;
+    right: 0;
+}

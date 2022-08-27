@@ -1,0 +1,385 @@
+body {
+    margin: 0px;
+    background-color: rgb(226, 226, 226);
+}
+
+nav {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    height: 10vh auto;
+}
+
+.navbar-top-left {
+    display: flex;
+    padding-top: 1px;
+    flex: 50%;
+    align-items: center;
+}
+
+.navbar-top-left img {
+    padding-left: 87px;
+    width: 60px;
+    height: 40px;
+}
+
+.navbar-top-left li {
+    display: inline;
+    /* untuk menghilangkan tanda unordered listnya*/
+}
+
+.navbar-top-left ul li a {
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Segoe UI';
+    color: black;
+    background: rgb(255, 255, 255);
+    padding: 0px;
+    margin: 30px;
+}
+
+.navbar-top-right {
+    color: black;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex: 50%;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 86px;
+}
+
+.navbar-top-right a {
+    text-decoration: none;
+    color: whitesmoke;
+    background-color: black;
+    padding: 5px 20px 8px 20px;
+    border-radius: 10px;
+    font-family: 'Segoe UI';
+    font-size: 15px;
+}
+
+.skill-container1 {
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 120px;
+    margin-right: 120px;
+    height: 530px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 10px 20px grey;
+    background-color: rgb(255, 255, 255);
+}
+
+.skill-container2 {
+    /* background-color: yellow; */
+    display: flex;
+    flex: 72%;
+    justify-content: center;
+    align-items: center;
+}
+
+.skill-container3 {
+    display: flex;
+    /* background-color: red; */
+    flex: 40%;
+    align-items: center;
+}
+
+.skill-container3 table {
+    /* background-color: green; */
+    margin-left: 35px;
+    border-radius: 10px;
+}
+
+.skill-container2-3 {
+    /* background-color: aqua; */
+    margin-left: 80px;
+}
+
+.kanan-kiri {
+    /* background-color: rebeccapurple; */
+    display: flex;
+}
+
+.favicon a i {
+    font-size: 30px;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.my-project {
+    background-color: rgb(255, 255, 255);
+}
+
+.text-home {
+    color: orangered !important;
+    font-weight: bold;
+    font-size: 17px;
+    font-family: 'Segoe UI';
+    margin-right: 15px;
+}
+
+.text-orange {
+    font-family: 'Segoe UI';
+    font-size: 17px;
+}
+
+.bg-orange {
+    background-color: orangered;
+    font-family: 'Segoe UI';
+    border: none;
+    border-radius: 4px;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 5px;
+    height: 35px;
+    width: 130px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.bg-orange span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.bg-orange span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -10px;
+    transition: 0.5s;
+}
+
+.bg-orange:hover span {
+    padding-right: 15px;
+}
+
+.bg-orange:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.bg-color {
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.bg-color:hover {
+    background-color: rgb(119, 119, 119)}
+
+.bg-color:active {
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.black {
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.black:hover {
+    background-color: orangered}
+
+.black:active {
+    background-color: rgb(185, 49, 0);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.black2 {
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.black2:hover {
+    background-color: rgb(119, 119, 119)}
+
+.black2:active {
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.white {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-family: 'Segoe UI';
+    border: none;
+}
+
+.blog-detail-satu {
+    /* background-color: rgb(255, 14, 14); */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    /* atau bisa juga pakai justify-contetnya space-evently, jadi posisi cardnya ada ditengah */
+    /* float: left; utk mengatur post blog menyesuaikan lebar browser */
+}
+
+.blog-detail-container-satu {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    width: 380px;
+    /*mengatur ukuran post blog agar tidak kelewat batas karena isi deskripsi atau yang lainnya*/
+    margin-bottom: 50px;
+    margin-left: 52px;
+    padding-bottom: 15px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px grey;
+}
+
+.edit-dan-delete {
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.edit-satu button {
+    margin-right: 5px;
+}
+
+button {
+    font-family: 'Segoe UI';
+    font-size: 20px;
+    text-align: center;
+    width: 170px;
+    height: 35px;
+    color: whitesmoke;
+    background-color: rgb(0, 0, 0);
+    justify-content: center;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px grey;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#input-project-name {
+    color: black;
+}
+
+#myBtn {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Fixed/sticky position */
+    bottom: 20px;
+    /* Place the button at the bottom of the page */
+    right: 30px;
+    /* Place the button 30px from the right */
+    z-index: 99;
+    /* Make sure it does not overlap */
+    border: none;
+    /* Remove borders */
+    outline: none;
+    /* Remove outline */
+    background-color: orangered;
+    /* Set a background color */
+    color: white;
+    /* Text color */
+    cursor: pointer;
+    /* Add a mouse pointer on hover */
+    padding: 5px;
+    /* Some padding */
+    border-radius: 5px;
+    /* Rounded corners */
+    font-size: 15px;
+    /* Increase font size */
+    width: 70px;
+}
+
+/* #myBtn:hover {
+    background-color:yellow;
+} */
+
+.glow {
+    font-size: 60px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 0px rgb(0, 0, 0), 0 0 5px rgb(0, 0, 0), 0 0 15px orangered, 0 0 25px orangered, 0 0 35px orangered, 0 0 45px orangered, 0 0 55px orangered;
+    }
+
+    to {
+        text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 15px orange, 0 0 25px orange, 0 0 35px orange, 0 0 45px orange, 0 0 55px orange, 0 0 65px orange;
+    }
+}
+
+.spinner {
+    width: 56px;
+    height: 56px;
+    display: grid;
+    color: orangered;
+    background: radial-gradient(farthest-side, currentColor calc(100% - 7px),#0000 calc(100% - 6px) 0);
+    mask: radial-gradient(farthest-side,#0000 calc(100% - 15px),#000 calc(100% - 13px));
+    /* -webkit-mask: aslinya seperti ini cuman error */
+    border-radius: 50%;
+    animation: spinner-sm4bhi 2s infinite linear;
+}
+
+.spinner::before,
+.spinner::after {
+    content: "";
+    grid-area: 1/1;
+    background: linear-gradient(currentColor 0 0) center,
+    linear-gradient(currentColor 0 0) center;
+    background-size: 100% 11px,11px 100%;
+    background-repeat: no-repeat;
+}
+
+.spinner::after {
+    transform: rotate(45deg);
+}
+
+@keyframes spinner-sm4bhi {
+    100% {
+transform: rotate(1turn);
+    }
+}
+
+.arrow {
+    border: solid rgb(255, 255, 255);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
