@@ -1,5 +1,5 @@
 {
-  "name": "day9",
+  "name": "day10",
   "version": "1.0.0",
   "description": "Bismillah",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bimbiNaufal98/Bismillah-Stage1B39-Day9.git"
+    "url": "git+https://github.com/bimbiNaufal98/Bismillah-Stage1B39-Day10.git"
   },
   "author": "Bimbi Naufal",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bimbiNaufal98/Bismillah-Stage1B39-Day9/issues"
+    "url": "https://github.com/bimbiNaufal98/Bismillah-Stage1B39-Day10/issues"
   },
-  "homepage": "https://github.com/bimbiNaufal98/Bismillah-Stage1B39-Day9#readme",
+  "homepage": "https://github.com/bimbiNaufal98/Bismillah-Stage1B39-Day10#readme",
   "dependencies": {
     "express": "^4.18.1",
     "hbs": "^4.2.0",
