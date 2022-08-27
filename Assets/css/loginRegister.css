@@ -1,6 +1,5 @@
 body {
     margin: 0px;
-    background-color: rgb(226, 226, 226);
 }
 
 nav {
@@ -27,7 +26,7 @@ nav {
 }
 
 .navbar-top-left ul li a {
-    text-decoration: none;
+    text-decoration: none; /*menghilangkan underlined */
     font-size: 20px; 
     font-family: 'Segoe UI';
     color: black;
@@ -37,7 +36,7 @@ nav {
 
 .navbar-top-right {
     color: black;
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(224, 3, 3); */
     display: flex;
     flex: 50%;
     justify-content: flex-end;
@@ -55,23 +54,29 @@ nav {
     font-size: 15px;
 }
 
-.judul {
-    text-align: center;
-    font-size: 40px;
-    font-family: 'Segoe UI';
-    margin-bottom: 40px;
-    font-weight: bold;
-    text-transform: capitalize;
-}
-
 form {
     margin: 40px auto;
     width: 600px;
     padding: 10px auto;
 }
 
+form .loginFailed {
+    margin: 0px;
+    padding: 0px;
+    padding-left: 10px;
+    display: flex;
+}
+
+form .nameLogin {
+    padding-bottom: 20px;
+}
+
 form div {
     margin-top: 20px;
+}
+
+form input {
+    box-shadow: 0px 10px 25px rgb(170, 170, 170);
 }
 
 form label {
@@ -80,18 +85,63 @@ form label {
     font-family: 'Segoe UI';
 }
 
-form input {
-    width: 100%;
-    height: 40px;
-    border: none;
-    box-shadow: 0px 10px 25px rgb(170, 170, 170);
+.form-submit {
+    background-color: rgb(226, 226, 226);
+    /* display: flex; */
 }
 
-form select {
+.form-submit1 {
+    background-color: rgb(226, 226, 226);
+    display: flex;
+    height: 599px;
+}
+
+.judul {
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Segoe UI';
+    margin-bottom: 40px;
+    margin-top: 0px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.project-name input {
     width: 100%;
     height: 40px;
     border: none;
-    box-shadow: 0px 10px 25px rgb(170, 170, 170);
+}
+
+.startdate {
+    display: flex;
+    width: 100%;
+    height: 73px;
+}
+
+.satu {
+    width: 100%;
+    margin-right: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.dua {
+    width: 100%;
+    margin-left: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.satu input {
+    width: 100%;
+    height: 40px;
+    border: none;
+}
+
+.dua input {
+    width: 100%;
+    height: 40px;
+    border: none;
 }
 
 form textarea {
@@ -100,6 +150,21 @@ form textarea {
     border: none;
     resize: none;
     box-shadow: 0px 10px 25px rgb(170, 170, 170);
+}
+
+.input-technologies input {
+    box-shadow: 0px 0px 2px grey;
+}
+
+.inputan {
+    background-color: rgb(255, 255, 255);
+    height: 49px;
+    margin-top: 0px;
+    box-shadow: 0px 10px 25px rgb(170, 170, 170);
+}
+
+.inputan p {
+    margin-top: 0px;
 }
 
 form button {
@@ -114,6 +179,67 @@ form button {
     cursor: pointer;
 }
 
+
+/* 
+.my-project {
+    background-color: rgb(255, 0, 0);
+} */
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    text-transform: capitalize;
+    padding-top: 40px;
+}
+
+.blog-detail-satu {
+    /* background-color: red; */
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly; */
+    float: left;
+    /* float: left; utk mengatur post blog menyesuaikan lebar browser */
+}
+
+.blog-detail-container-satu {
+    /* background-color: yellow; */
+    width: 400px; /*mengatur ukuran post blog agar tidak kelewat batas karena isi deskripsi atau yang lainnya*/
+    margin-bottom: 50px;
+    margin-left: 37px;
+    padding-bottom: 15px;
+    box-shadow: 0px 0px 20px grey;
+}
+
+.edit-dan-delete {
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    margin-top: 27px;
+}
+
+.edit-satu button {
+    margin-right: 5px;
+}
+
+button {
+    font-family: 'Segoe UI';
+    font-size: 20px;
+    text-align: center;
+    width: 190px;
+    height: 35px;
+    color: whitesmoke;
+    background-color: rgb(0, 0, 0);
+    justify-content: center;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px grey;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 .text-home {
     font-size: 17px;
     font-family: 'Segoe UI';
@@ -121,8 +247,10 @@ form button {
     margin-left: 10px;
 }
 .text-orange {
+    color: orangered !important;
     font-family: 'Segoe UI';
     font-size: 17px;
+    font-weight: bold;
 }
 
 .bg-orange {

@@ -60,17 +60,6 @@ form {
     padding: 10px auto;
 }
 
-form .loginFailed {
-    margin: 0px;
-    padding: 0px;
-    padding-left: 10px;
-    display: flex;
-}
-
-form .nameLogin {
-    padding-bottom: 20px;
-}
-
 form div {
     margin-top: 20px;
 }
@@ -87,13 +76,7 @@ form label {
 
 .form-submit {
     background-color: rgb(226, 226, 226);
-    /* display: flex; */
-}
-
-.form-submit1 {
-    background-color: rgb(226, 226, 226);
     display: flex;
-    height: 599px;
 }
 
 .judul {
@@ -102,7 +85,6 @@ form label {
     font-family: 'Segoe UI';
     margin-bottom: 40px;
     margin-top: 0px;
-    padding-top: 50px;
     font-weight: bold;
     text-transform: capitalize;
 }
@@ -295,6 +277,27 @@ button {
     right: 0;
 }
 
+.bg-color {
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.bg-color:hover {
+    background-color: orangered}
+
+.bg-color:active {
+    background-color: rgb(185, 49, 0);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
 .bg-orange1 {
     /* background-color: orangered; */
     font-family: 'Segoe UI';
@@ -335,23 +338,20 @@ button {
     right: 0;
 }
 
-.bg-color {
-    font-size: 17px;
-    text-align: center;
-    cursor: pointer;
-    outline: none;
-    color: #fff;
-    background-color: rgb(0, 0, 0);
+.bg-orange2 {
+    background-color: orangered;
+    font-family: 'Segoe UI';
     border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
-}
-
-.bg-color:hover {
-    background-color: orangered}
-
-.bg-color:active {
-    background-color: rgb(185, 49, 0);
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+    /* border-radius: 4px; */
+    color: #ffffff;
+    text-align: center;
+    font-size: 17px;
+    padding: 5px;
+    height: 35px;
+    width: 180px;
+    transition: all 0.5s;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight:bolder;
+    margin-right: 8px;
 }

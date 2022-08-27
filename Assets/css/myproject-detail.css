@@ -181,3 +181,21 @@ nav {
     opacity: 1;
     right: 0;
 }
+
+.bg-orange2 {
+    background-color: orangered;
+    font-family: 'Segoe UI';
+    border: none;
+    /* border-radius: 4px; */
+    color: #ffffff;
+    text-align: center;
+    font-size: 17px;
+    padding: 5px;
+    height: 35px;
+    width: 180px;
+    transition: all 0.5s;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight:bolder;
+    margin-right: 8px;
+}

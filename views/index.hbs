@@ -27,9 +27,11 @@
                             <a class="nav-link text-home" aria-current="page" href="/">Home</a>
                             <!-- nav link active utk membuat link menjadi aktif terus, saat tidak di klik pun menyala -->
                         </li>
+                        {{#if isLogin}}
                         <li class="nav-item">
                             <a class="nav-link text-orange" href="/myproject">Add Project</a>
                         </li>
+                        {{/if}}
                     </ul>
                     {{#if isLogin}}
                         <a href="/#" class="btn btn-success bg-orange2 px-1" style="font-family: 'Segoe UI';"><span>Hi {{user.name}}</span></a>

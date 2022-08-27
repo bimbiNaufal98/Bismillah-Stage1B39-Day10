@@ -82,8 +82,14 @@ app.get( '/', (request, response) => { //jadi ketika ada yang akses routing / in
 
 })
 
-app.get( '/myproject', (request, response) => {
-    response.render ('myproject')
+app.get ( '/myproject', (request, response) => {
+    
+    if(!request.session.user) {
+        request.flash('danger', 'Harap login terlebih dahulu')
+        return response.redirect ('/login')
+    }
+    
+    response.render ('myproject', {user: request.session.user, isLogin: request.session.isLogin})
 })
 
 app.post( '/myproject', (request, response) => {
@@ -144,8 +150,13 @@ app.get( '/update-myproject/:idParams', (request, response) => {
 
             console.table(dataBlog3[0]);
 
+            if(!request.session.user) {
+                request.flash('danger', 'Harap login terlebih dahulu')
+                return response.redirect ('/login')
+            }
+
             // response.render ('index', {dataBlog: dataBlog2}) // dataBlog: data adalah pemamnggilan utk let data diatas
-            response.render ('update-myproject', {data: dataBlog3[0]}) //{data} aslinya ditaruk di dalam buka kurung
+            response.render ('update-myproject', {data: dataBlog3[0], user: request.session.user, isLogin: request.session.isLogin}) //{data} aslinya ditaruk di dalam buka kurung
         })
 })
 
@@ -181,7 +192,7 @@ app.post('/update-myproject/:idParams', (request, response) => {
 })
 
 app.get( '/contact', (request, response) => {
-    response.render ('contact')
+    response.render ('contact', {user: request.session.user, isLogin: request.session.isLogin})
 })
 
 app.get( '/myproject-detail/:id', (request, response) => { //:name ini bisa diisikan apa saja, karena menjadi penampung si paramsnya, maka nanti yang muncul di console.log nya adalah name : bimbi-naufal sesuai yang diisikan oleh user
@@ -226,8 +237,13 @@ app.get( '/myproject-detail/:id', (request, response) => { //:name ini bisa diis
             })
             // console.log(dataBlog2)
 
+            if(!request.session.user) {
+                request.flash('danger', 'Harap login terlebih dahulu')
+                return response.redirect ('/login')
+            }
+
             // response.render ('index', {dataBlog: dataBlog2}) // dataBlog: data adalah pemamnggilan utk let data diatas
-            response.render ('myproject-detail', {data: dataBlog2[0]}) //{data} aslinya ditaruk di dalam buka kurung
+            response.render ('myproject-detail', {data: dataBlog2[0], user: request.session.user, isLogin: request.session.isLogin}) //{data} aslinya ditaruk di dalam buka kurung
         })
 
 })
@@ -243,6 +259,11 @@ app.get("/delete-blog/:idParams", (request, response) => {
         
         client.query(query, (err, result) => {
             if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam query databasenya, dan jika tidak kita gunakan if {err} ini maka akan terus lanjut saja
+
+            if(!request.session.user) {
+                request.flash('danger', 'Harap login terlebih dahulu')
+                return response.redirect ('/login')
+            }
 
             response.redirect ('/') //{data} aslinya ditaruk di dalam buka kurung
         })
@@ -269,7 +290,7 @@ app.get("/delete-blog/:idParams", (request, response) => {
 // 10. cara menjalankan nodemon adalah dengan npm start, maka dia akan otomatis refresh di server node js
 
 app.get( '/register', (request, response) => { //jadi ketika ada yang akses routing / ini, maka dia akan melakukan apa di anonymous functionnya, yang dimana memiliki 2 parameter, request dan response
-    response.render ('register') // dataBlog: data adalah pemamnggilan utk let data diatas
+    response.render ('register', {user: request.session.user, isLogin: request.session.isLogin}) // dataBlog: data adalah pemamnggilan utk let data diatas
     })
 
 app.post( '/register', (request, response) => { //jadi ketika ada yang akses routing / ini, maka dia akan melakukan apa di anonymous functionnya, yang dimana memiliki 2 parameter, request dan response
@@ -297,7 +318,7 @@ app.post( '/register', (request, response) => { //jadi ketika ada yang akses rou
     })
 
 app.get( '/login', (request, response) => { //jadi ketika ada yang akses routing / ini, maka dia akan melakukan apa di anonymous functionnya, yang dimana memiliki 2 parameter, request dan response
-    response.render ('login')
+    response.render ('login', {user: request.session.user, isLogin: request.session.isLogin})
     })
 
 app.post( '/login', (request, response) => { //jadi ketika ada yang akses routing / ini, maka dia akan melakukan apa di anonymous functionnya, yang dimana memiliki 2 parameter, request dan response
@@ -339,6 +360,17 @@ app.post( '/login', (request, response) => { //jadi ketika ada yang akses routin
             response.redirect ('/login') //{data} aslinya ditaruk di dalam buka kurung
         }
     })
+})
+
+app.get( '/logout', (request, response) => { //jadi ketika ada yang akses routing / ini, maka dia akan melakukan apa di anonymous functionnya, yang dimana memiliki 2 parameter, request dan response
+    if(!request.session.user) {
+        request.flash('danger', 'Harap login terlebih dahulu')
+        return response.redirect ('/login')
+    }
+    
+    request.session.destroy() //cara utk menghapus session dan kembali ke login
+
+    response.redirect ('/login')
 })
 
 })
