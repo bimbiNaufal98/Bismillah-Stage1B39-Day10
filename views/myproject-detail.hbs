@@ -25,9 +25,11 @@
                         <!-- nav link active utk membuat link menjadi aktif terus, saat tidak di klik pun menyala -->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-orange" href="/myproject">Add Project</a>
+                        <a class="nav-link" href="/myproject">Add Project</a>
                     </li>
                 </ul>
+                <a href="/register" class="bg-orange1 px-1"><span>Register</span></a>
+                <a href="/login" class="bg-orange1 px-1"><span>Login</span></a>
                 <a href="/contact" class="bg-orange text-light px-1"><span>Contact Me</span></a>
                 <!-- p itu adalah padding, px itu padding kanan kiri, py itu padding atas bawah, dan maksimal semua di 5 -->
             </div>
@@ -36,24 +38,23 @@
     <section>
         <div class="judul">
             <h1>{{data.name}}</h1>
+            <i style="padding-right: 5px;" font-size="20px" class="fas fa-calendar-alt"></i> First post to website : {{data.postAt}}
         </div>
         <div class="blog-detail-1">
-            <div style="margin-left: 100px; width: 55%; height: 500px; overflow: hidden; position: relative;">
+            <div style="margin-left: 100px; width: 63%; height: 500px; overflow: hidden; position: relative;">
                 <img src="/Assets/image/gambar 6.jpg" style="max-width: 100%; position: absolute;">
             </div>
             <div class="blog-detail-isi">
                 <h2 style="font-family:'Segoe UI'"> Duration </h2>
                 <div>
-                    <i style="padding-right: 5px;" font-size="20px" class="fas fa-calendar-alt"></i> Show Post : {{data.postAt}}
-                </div>
-                <div>
-                    <i style="padding-right: 5px;" font-size="20px" class="fas fa-calendar-alt"></i> Start date : {{data.start_date}}
-                    <i font-size="20px"></i>- End date : {{data.end_date}}
+                    <i style="padding-right: 5px;" font-size="20px" class="fas fa-calendar-alt"></i>{{data.start_date}}
+                    <i font-size="20px"></i>- {{data.end_date}}
                 </div>
                 <div>
                     <i style="font-size: 20px; margin-top: 20px; padding-right: 5px;" class="fa-solid fa-hourglass-start"></i>{{data.duration}} 
                 </div>
                 <h2 style="font-family:'Segoe UI'; margin-top: 20px;">Technologies</h2>
+                <div>
                     <p style="font-size: 15px; margin-top: 10px;">
                     <i style="font-size:25px;" class="fa-brands fa-js"></i> Javascript       
                     <i style="font-size:25px; margin-left: 20px;" class="fa-brands fa-php"></i> Php

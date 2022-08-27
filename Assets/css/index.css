@@ -103,10 +103,28 @@ nav {
 
 .favicon a i {
     font-size: 30px;
-    margin-top: 20px;
+    margin-top: 25px;
     margin-left: 20px;
     color: black;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
+    text-align: left;
+}
+
+.glow {
+    font-size: 30px;
+    color: rgb(0, 0, 0);
+    text-align: left;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 0px rgb(0, 0, 0), 0 0 5px rgb(0, 0, 0), 0 0 15px whitesmoke, 0 0 25px whitesmoke, 0 0 35px whitesmoke, 0 0 45px whitesmoke, 0 0 55px whitesmoke;
+    }
+
+    to {
+        text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 15px rgb(201, 201, 201), 0 0 25px rgb(201, 201, 201), 0 0 35px rgb(201, 201, 201), 0 0 45px rgb(201, 201, 201), 0 0 55px rgb(201, 201, 201), 0 0 65px rgb(201, 201, 201);
+    }
 }
 
 .my-project {
@@ -118,7 +136,8 @@ nav {
     font-weight: bold;
     font-size: 17px;
     font-family: 'Segoe UI';
-    margin-right: 15px;
+    margin-right: 25px;
+    margin-left: 10px;
 }
 
 .text-orange {
@@ -137,6 +156,7 @@ nav {
     padding: 5px;
     height: 35px;
     width: 130px;
+    margin-left: 30px;
     transition: all 0.5s;
     cursor: pointer;
 }
@@ -162,6 +182,46 @@ nav {
 }
 
 .bg-orange:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.bg-orange1 {
+    /* background-color: orangered; */
+    font-family: 'Segoe UI';
+    border: none;
+    /* border-radius: 4px; */
+    color: #000000;
+    text-align: center;
+    font-size: 17px;
+    padding: 5px;
+    height: 35px;
+    width: 100px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.bg-orange1 span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.bg-orange1 span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -10px;
+    transition: 0.5s;
+}
+
+.bg-orange1:hover span {
+    padding-right: 15px;
+}
+
+.bg-orange1:hover span:after {
     opacity: 1;
     right: 0;
 }
@@ -255,6 +315,7 @@ nav {
     margin-left: 52px;
     padding-bottom: 15px;
     border-radius: 15px;
+    text-align: left;
     box-shadow: 0px 0px 20px grey;
 }
 
@@ -263,6 +324,7 @@ nav {
     display: flex;
     justify-content: center;
     margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .edit-satu button {
@@ -322,23 +384,6 @@ button {
 /* #myBtn:hover {
     background-color:yellow;
 } */
-
-.glow {
-    font-size: 60px;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    animation: glow 1s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-    from {
-        text-shadow: 0 0 0px rgb(0, 0, 0), 0 0 5px rgb(0, 0, 0), 0 0 15px orangered, 0 0 25px orangered, 0 0 35px orangered, 0 0 45px orangered, 0 0 55px orangered;
-    }
-
-    to {
-        text-shadow: 0 0 5px rgb(0, 0, 0), 0 0 15px orange, 0 0 25px orange, 0 0 35px orange, 0 0 45px orange, 0 0 55px orange, 0 0 65px orange;
-    }
-}
 
 .spinner {
     width: 56px;

@@ -2,6 +2,7 @@
 // const { response } = require('express');
 const { request, response } = require('express');
 const express = require ('express'); // 2. atau bisa juga import express from "express"
+const bcrypt = require ('bcrypt')
 const { Client } = require('pg');
 const { copyDone } = require('pg-protocol/dist/messages');
 // const { request } = require('http');
@@ -30,6 +31,8 @@ const db=require('./connection/db') //lakukan import dari db.js di folder connec
 //     }
 // ]
 
+db.connect ((err, client, done) => { //pakai cara seperti ini yakni db.connect ditaruk di atas sendiri dan ditutup di akhir app, guna utk efisiensi, sebelumnya masuk di tiap tiap app
+
 app.get( '/', (request, response) => { //jadi ketika ada yang akses routing / ini, maka dia akan melakukan apa di anonymous functionnya, yang dimana memiliki 2 parameter, request dan response
     // console.log(dataBlog);
 
@@ -41,7 +44,7 @@ app.get( '/', (request, response) => { //jadi ketika ada yang akses routing / in
     //     } 
     // })
     // console.log(data)
-    db.connect ((err, client, done) => { //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
+    //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
         if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam connection databasenya
         //lalu kita lakukan query
         client.query('SELECT * FROM public.tb_projects ORDER BY id DESC;', (err, result) => {
@@ -62,7 +65,6 @@ app.get( '/', (request, response) => { //jadi ketika ada yang akses routing / in
 
             response.render ('index', {dataBlog: dataBlog2}) // dataBlog: data adalah pemamnggilan utk let data diatas
         })
-    })
 
 })
 
@@ -85,7 +87,7 @@ app.post( '/myproject', (request, response) => {
 
     // let = {inputProject: projectName, inputStartDate: startDate} = request.body , atau bisa juga dngan cara seperti ini
 
-    db.connect ((err, client, done) => { //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
+   //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
         if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam connection databasenya
         //lalu kita lakukan query
         let query=`INSERT INTO public.tb_projects(name, start_date, end_date, description, technologies, image) VALUES
@@ -98,7 +100,6 @@ app.post( '/myproject', (request, response) => {
 
             response.redirect ('/') //{data} aslinya ditaruk di dalam buka kurung
         })
-    })
 
     // response.redirect ('/') //supaya web browser tidak loading terus"an, maka kita kasih response.render atau inner.html menuju halaman index
 })
@@ -107,7 +108,7 @@ app.get( '/update-myproject/:idParams', (request, response) => {
     let id=request.params.idParams
     // console.log(id);
 
-    db.connect ((err, client, done) => { //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
+    //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
         if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam connection databasenya
         //lalu kita lakukan query
         let query=`SELECT * FROM public.tb_projects WHERE id=${id}`
@@ -116,7 +117,7 @@ app.get( '/update-myproject/:idParams', (request, response) => {
             if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam query databasenya, dan jika tidak kita gunakan if {err} ini maka akan terus lanjut saja
             
             let data=result.rows // utk menampilkan ke object properties nya, bukan lagi array object yang tampail di console log nya
-            console.log(data[0]);
+            // console.table(data[0]);
 
             dataBlog3=data.map((item) => { //fungsi map adalah utk memanipulasi datanya, bisa dinamis
                 return {
@@ -127,12 +128,11 @@ app.get( '/update-myproject/:idParams', (request, response) => {
                 }
             })
 
-            console.log(dataBlog3[0]);
+            console.table(dataBlog3[0]);
 
             // response.render ('index', {dataBlog: dataBlog2}) // dataBlog: data adalah pemamnggilan utk let data diatas
             response.render ('update-myproject', {data: dataBlog3[0]}) //{data} aslinya ditaruk di dalam buka kurung
         })
-    })
 })
 
 app.post('/update-myproject/:idParams', (request, response) => {
@@ -149,7 +149,7 @@ app.post('/update-myproject/:idParams', (request, response) => {
     let technologies4 = request.body.inputTechnologiesNodeJs
     let images = request.body.inputImage
 
-    db.connect ((err, client, done) => { //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
+    //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
         if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam connection databasenya
         //lalu kita lakukan query
         let query=`UPDATE public.tb_projects
@@ -159,12 +159,11 @@ app.post('/update-myproject/:idParams', (request, response) => {
         client.query(query, (err, result) => {
             if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam query databasenya, dan jika tidak kita gunakan if {err} ini maka akan terus lanjut saja
 
-            console.log(query);
+            console.table(query);
 
             // response.render ('index', {dataBlog: dataBlog2}) // dataBlog: data adalah pemamnggilan utk let data diatas
             response.redirect ('/') //{data} aslinya ditaruk di dalam buka kurung
         })
-    })
 })
 
 app.get( '/contact', (request, response) => {
@@ -189,7 +188,7 @@ app.get( '/myproject-detail/:id', (request, response) => { //:name ini bisa diis
     let id=request.params.id
 
     
-    db.connect ((err, client, done) => { //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
+    //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
         if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam connection databasenya
         //lalu kita lakukan query
         let query=`SELECT * FROM public.tb_projects WHERE id=${id}`
@@ -216,7 +215,6 @@ app.get( '/myproject-detail/:id', (request, response) => { //:name ini bisa diis
             // response.render ('index', {dataBlog: dataBlog2}) // dataBlog: data adalah pemamnggilan utk let data diatas
             response.render ('myproject-detail', {data: dataBlog2[0]}) //{data} aslinya ditaruk di dalam buka kurung
         })
-    })
 
 })
 
@@ -224,7 +222,7 @@ app.get("/delete-blog/:idParams", (request, response) => {
 
     let id=request.params.idParams
 
-    db.connect ((err, client, done) => { //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
+    //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
         if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam connection databasenya
         //lalu kita lakukan query
         let query=`DELETE FROM public.tb_projects WHERE id=${id}`
@@ -234,7 +232,6 @@ app.get("/delete-blog/:idParams", (request, response) => {
 
             response.redirect ('/') //{data} aslinya ditaruk di dalam buka kurung
         })
-    })
 
     // // console.log(index)
     // dataBlog.splice(index, 1)
@@ -256,6 +253,71 @@ app.get("/delete-blog/:idParams", (request, response) => {
 // 9. install nodemon utk proses development aja, namun saat melakukan hosting/ produksi / bisa diakses ke semua orang lewat internet, tidak akan kita install
 
 // 10. cara menjalankan nodemon adalah dengan npm start, maka dia akan otomatis refresh di server node js
+
+app.get( '/register', (request, response) => { //jadi ketika ada yang akses routing / ini, maka dia akan melakukan apa di anonymous functionnya, yang dimana memiliki 2 parameter, request dan response
+    response.render ('register') // dataBlog: data adalah pemamnggilan utk let data diatas
+    })
+
+app.post( '/register', (request, response) => { //jadi ketika ada yang akses routing / ini, maka dia akan melakukan apa di anonymous functionnya, yang dimana memiliki 2 parameter, request dan response
+    
+    // let profilName = request.body.inputName
+    // let email = request.body.inputEmail
+    // let password = request.body.inputPassword
+
+    let = {inputName: profilName, inputEmail: email, inputPassword: password} = request.body
+
+    const hashedPassword = bcrypt.hashSync(password, 10) //udah pakemnya sprti ini
+    
+    if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam connection databasenya
+        //lalu kita lakukan query
+        let query=`INSERT INTO public.tb_users (name, email, password) VALUES
+                        ('${profilName}', '${email}', '${hashedPassword}')`
+        
+        client.query(query, (err, result) => {
+            if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam query databasenya, dan jika tidak kita gunakan if {err} ini maka akan terus lanjut saja
+
+            console.log(query);
+
+            response.redirect ('/login') //{data} aslinya ditaruk di dalam buka kurung
+        })
+    })
+
+app.get( '/login', (request, response) => { //jadi ketika ada yang akses routing / ini, maka dia akan melakukan apa di anonymous functionnya, yang dimana memiliki 2 parameter, request dan response
+    response.render ('login')
+    })
+
+app.post( '/login', (request, response) => { //jadi ketika ada yang akses routing / ini, maka dia akan melakukan apa di anonymous functionnya, yang dimana memiliki 2 parameter, request dan response
+    
+    let = {inputEmail: email, inputPassword: password} = request.body
+
+    let query = `SELECT * from public.tb_users WHERE email='${email}'`
+
+    client.query(query, (err, result) => {
+        if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam query databasenya, dan jika tidak kita gunakan if {err} ini maka akan terus lanjut saja
+
+        console.log(result.rows.length);
+        console.log(result.rows[0]);
+        if (result.rows.length == 0) {
+            console.log("email belum terdaftar")
+            response.redirect('/login')
+            return
+        }
+
+        const isMatch=bcrypt.compareSync(password, result.rows[0].password);
+        console.log(isMatch);
+
+        if(isMatch) {
+            console.log("login berhasil");
+        } else {
+            console.log("Pasword salah");
+        }
+
+
+        response.redirect ('/') //{data} aslinya ditaruk di dalam buka kurung
+    })
+})
+
+})
 
 
 function getFullTime(time){

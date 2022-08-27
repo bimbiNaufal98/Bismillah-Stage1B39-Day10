@@ -31,7 +31,9 @@
                             <a class="nav-link text-orange" href="/myproject">Add Project</a>
                         </li>
                     </ul>
-                    <a href="/contact" class="bg-orange text-light px-1"><span>Contact Me</span></a>
+                    <a href="/register" class="bg-orange1 px-1" style="font-family: 'Segoe UI';"><span>Register</span></a>
+                    <a href="/login" class="bg-orange1 px-1" style="font-family: 'Segoe UI';"><span>Login</span></a>
+                    <a href="/contact" class="bg-orange text-light px-1" style="font-family: 'Segoe UI';"><span>Contact Me</span></a>
                     <!-- p itu adalah padding, px itu padding kanan kiri, py itu padding atas bawah, dan maksimal semua di 5 -->
                 </div>
             </div>
@@ -40,7 +42,7 @@
             <div class="skill-container2">
                 <div class="skill-container2-3">
                     {{!-- glowing text di w3schools --}}
-                    <h1 class="glow"
+                    <h1
                         style="color: rgb(0, 0, 0); font-weight: bold; text-align: left; padding-left: 19px; padding-right: 10px; margin-bottom: 25px; margin-top: 0px;">
                         Hi! Welcome to my personal web ~</h1>
                     <p style="text-align: justify; padding-left: 20px; padding-right: 20px; margin-top: 15px; margin-bottom: 40px;">
@@ -112,35 +114,30 @@
         <h2 style="text-align: center; margin-top: 55px; padding-top: 40px; padding-bottom: 50px;">"My Project"</h2>
             <div class="blog-detail-satu">
                 {{#each dataBlog}}
-                <a href="/myproject-detail/{{this.id}}" title="Read more" target="_blank" class="text-decoration-none">
+                <a href="/myproject-detail/{{this.id}}" title="Read more" target="_blank">
                 {{!-- kenapa pakai this.id bukan @index, karena utk get data id di postgreySQL --}}
-                <div class="blog-detail-container-satu">
-                    <div style="width: 350px; height: 300px; overflow: hidden; position: relative; margin: 15px; border-radius: 10px;">
+                <div class="btn-danger blog-detail-container-satu">
+                    <div style="height: 300px; overflow: hidden; position: relative; margin: 15px; border-radius: 10px;">
                         <img src="/Assets/image/gambar 6.jpg" style="max-width: 100%; position: absolute;">
                     </div>
                     <p id="input-project-name" style="margin-right: 13px; margin-top: 10px; margin-left: 13px; margin-bottom: 0px; font-size: 25px; font-family: 'Segoe UI'; font-weight: bold;"><a href="/myproject-detail/{{this.id}}" target="_blank" title="Read more" class="text-decoration-none"><span style="color:black;">{{this.name}}</span></a></p>
-                    <div class="durasi" style="margin-top: 0px; margin-left: 15px; margin-bottom: 0px; font-size: 12px; color: grey">Show Post : {{this.postAt}}</div>
+                    {{!-- <div class="durasi" style="margin-top: 0px; margin-left: 15px; margin-bottom: 0px; font-size: 12px; color: grey">First post to website : {{this.postAt}}</div> --}}
                     <div class="deskripsi">
-                        <p style="
-                            margin-top: 20px; margin-left: 13px; margin-right: 50px; text-align: justify; font-size: 16px; font-family: 'Segoe UI';">
-                        <b>بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</b>
-                        </p>
                         <div class="d-inline-block text-truncate" style="margin-top: 20px; margin-left: 13px; margin-right: 50px; text-align: justify; font-size: 16px; font-family: 'Segoe UI'; max-width: 320px;">
                             {{this.description}}
                         </div>
                     </div>
                     <div>
-
                     {{#each technologies}}
-                        <span><i style="margin-left: 13px; margin-top: 20px; margin-left: 20px; font-size: 30px;" class="fa-brands {{this}}"></i></span>
+                        <span class="glow"><i style="margin-top: 25px; margin-left: 25px; font-size: 30px;" class="fa-brands {{this}}"></i></span>
                     {{/each}}
                     </div>
                     <div style="text-align: right; margin-top: 10px; margin-right: 20px;">
-                    <span style="font-size:12px; color: grey;">Start date : {{this.start_date}}</span>
-                    <span style="font-size:12px; color: grey;">- End date : {{this.end_date}}</span>
+                    <span style="font-size:12px;">{{this.start_date}}</span>
+                    <span style="font-size:12px;">- {{this.end_date}}</span>
                     </div>
                     <div style="text-align: right; margin-top: 0px; margin-right: 20px;">
-                    <span style="font-size:12px; color: grey;">Duration : {{this.duration}}</span>
+                    <span style="font-size:12px;">Duration : {{this.duration}}</span>
                     </div>
                     <div class="edit-dan-delete">
                         <div class="edit-satu">
@@ -159,7 +156,7 @@
                 {{/each}}
             </div>
         </div>
-        <div class="spinner"></div>
+        <div class="spinner" ></div>
         <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="arrow up"></i></button>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="/Assets/js/home.js"></script>
