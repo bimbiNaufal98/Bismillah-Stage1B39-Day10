@@ -1,10 +1,12 @@
 // 1. express js adalah framework utk membuat web server jadi lebih cepat, sama halnya seperti bootstrap
 // const { response } = require('express');
-const { request, response } = require('express');
+// const { request, response } = require('express');
 const express = require ('express'); // 2. atau bisa juga import express from "express"
 const bcrypt = require ('bcrypt')
-const { Client } = require('pg');
-const { copyDone } = require('pg-protocol/dist/messages');
+const session = require ('express-session')
+const flash = require ('express-flash')
+// const { Client } = require('pg');
+// const { copyDone } = require('pg-protocol/dist/messages');
 // const { request } = require('http');
 // const { connected } = require('process');
 const app = express()
@@ -15,6 +17,16 @@ const port = 12000 // 4.utk mendeklar variabel portnya berapa
 app.set('view engine', 'hbs') // untuk menggunakan setingan view engine template enginenya, dari npm hbs, lalu rename file html menjadi hbs
 app.use('/assets', express.static(__dirname + '/assets')) // utk node js agar mendetect path dari css di folder assets, agar bisa combine dengan file hbs
 app.use(express.urlencoded({extended: false})) // supaya tidak undefined dalam console.log, kita isikan ini, karena data masih berupa object, maka harus diisi url encodenya dalam express
+app.use(flash()) // utk menggunakan flash, gunanya adalah utk mengirimkan alert flashnya secara langsung
+app.use(session({ // isian ini udah pakem dari npm express-session
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { 
+        maxAge: 24 * 60 * 60 * 1000, 
+    },
+     // ini adalah fungsinya utk membuat masa waktu user login, misal ini adalah 24 jam atau 1 hari
+}))
 const db=require('./connection/db') //lakukan import dari db.js di folder connection, karena telah melakukan exports
 
 // let dataBlog = [ // data dummy atau data statis
@@ -34,6 +46,7 @@ const db=require('./connection/db') //lakukan import dari db.js di folder connec
 db.connect ((err, client, done) => { //pakai cara seperti ini yakni db.connect ditaruk di atas sendiri dan ditutup di akhir app, guna utk efisiensi, sebelumnya masuk di tiap tiap app
 
 app.get( '/', (request, response) => { //jadi ketika ada yang akses routing / ini, maka dia akan melakukan apa di anonymous functionnya, yang dimana memiliki 2 parameter, request dan response
+    console.log(request.session);
     // console.log(dataBlog);
 
     // let data=dataBlog.map((item) => { //sudah sesuai pakem dari si looping map
@@ -56,6 +69,7 @@ app.get( '/', (request, response) => { //jadi ketika ada yang akses routing / in
             dataBlog2=data.map((item) =>{ //fungsi map adalah utk memanipulasi datanya, bisa dinamis
                 return {
                     ...item,
+                    isLogin: request.session.isLogin,
                     postAt: getFullTime(item.postAt),
                     start_date: getFullTime2(item.start_date),
                     end_date: getFullTime2(item.end_date),
@@ -63,7 +77,7 @@ app.get( '/', (request, response) => { //jadi ketika ada yang akses routing / in
                 }
             })
 
-            response.render ('index', {dataBlog: dataBlog2}) // dataBlog: data adalah pemamnggilan utk let data diatas
+            response.render ('index', {dataBlog: dataBlog2, user: request.session.user, isLogin: request.session.isLogin}) // dataBlog: data adalah pemamnggilan utk let data diatas
         })
 
 })
@@ -298,9 +312,9 @@ app.post( '/login', (request, response) => { //jadi ketika ada yang akses routin
         console.log(result.rows.length);
         console.log(result.rows[0]);
         if (result.rows.length == 0) {
-            console.log("email belum terdaftar")
-            response.redirect('/login')
-            return
+            console.log("Email belum terdaftar");
+            request.flash ('danger', 'Email belum terdaftar');
+            return response.redirect('/login');
         }
 
         const isMatch=bcrypt.compareSync(password, result.rows[0].password);
@@ -308,12 +322,22 @@ app.post( '/login', (request, response) => { //jadi ketika ada yang akses routin
 
         if(isMatch) {
             console.log("login berhasil");
+
+            request.session.isLogin=true
+            request.session.user = { //deklarasi variabel utk memasukkan data nya ke session
+                id:result.rows[0].id,
+                name:result.rows[0].name,
+                email:result.rows[0].email,
+            }
+
+            request.flash ('success', 'Selamat, login berhasil');
+            return response.redirect('/');
+
         } else {
-            console.log("Pasword salah");
+            console.log("Password salah");
+            request.flash ('danger', 'Password salah');
+            response.redirect ('/login') //{data} aslinya ditaruk di dalam buka kurung
         }
-
-
-        response.redirect ('/') //{data} aslinya ditaruk di dalam buka kurung
     })
 })
 

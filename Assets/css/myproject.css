@@ -60,6 +60,17 @@ form {
     padding: 10px auto;
 }
 
+form .loginFailed {
+    margin: 0px;
+    padding: 0px;
+    padding-left: 10px;
+    display: flex;
+}
+
+form .nameLogin {
+    padding-bottom: 20px;
+}
+
 form div {
     margin-top: 20px;
 }
@@ -76,7 +87,7 @@ form label {
 
 .form-submit {
     background-color: rgb(226, 226, 226);
-    display: flex;
+    /* display: flex; */
 }
 
 .form-submit1 {
@@ -91,6 +102,7 @@ form label {
     font-family: 'Segoe UI';
     margin-bottom: 40px;
     margin-top: 0px;
+    padding-top: 50px;
     font-weight: bold;
     text-transform: capitalize;
 }
