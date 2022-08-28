@@ -183,7 +183,7 @@ app.get( '/update-myproject/:idParams', (request, response) => {
         })
 })
 
-app.post('/update-myproject/:idParams', (request, response) => {
+app.post('/update-myproject/:idParams', upload.single('inputImage'), (request, response) => {
 
     let id=request.params.idParams
 
@@ -197,11 +197,13 @@ app.post('/update-myproject/:idParams', (request, response) => {
     let technologies4 = request.body.inputTechnologiesNodeJs
     let images = request.body.inputImage
 
+    const image = request.file.filename
+
     //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
         if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam connection databasenya
         //lalu kita lakukan query
         let query=`UPDATE public.tb_projects
-                    SET name='${projectName}', start_date='${startDate}', end_date='${endDate}', description='${description}', technologies='{"${technologies1}", "${technologies2}", "${technologies3}", "${technologies4}"}', image='${images}'
+                    SET name='${projectName}', start_date='${startDate}', end_date='${endDate}', description='${description}', technologies='{"${technologies1}", "${technologies2}", "${technologies3}", "${technologies4}"}', image='${image}'
                     WHERE id='${id}';`
 
         client.query(query, (err, result) => {
