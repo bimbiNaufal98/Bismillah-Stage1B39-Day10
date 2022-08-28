@@ -34,8 +34,8 @@
                         {{/if}}
                     </ul>
                     {{#if isLogin}}
-                        <a href="/#" class="btn btn-success bg-orange2 px-1" style="font-family: 'Segoe UI';"><span>Hello, {{user.name}}</span></a>
-                        <a href="/logout" class="text-danger mx-3 bg-orange3">Logout</a>
+                        <div class="hello"><button class="bn">Hello, {{user.name}}</button></div>
+                        <a href="/logout" class="text-danger mx-3">Logout</a>
                     {{else}}
                     <a href="/register" class="bg-orange1 px-1" style="font-family: 'Segoe UI';"><span>Register</span></a>
                     <a href="/login" class="bg-orange1 px-1" style="font-family: 'Segoe UI';"><span>Login</span></a>

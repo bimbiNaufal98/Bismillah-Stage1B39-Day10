@@ -2,9 +2,9 @@
 // const { response } = require('express');
 // const { request, response } = require('express');
 const express = require ('express'); // 2. atau bisa juga import express from "express"
-const bcrypt = require ('bcrypt')
-const session = require ('express-session')
-const flash = require ('express-flash')
+const bcrypt = require ('bcrypt') // utk decrypt password
+const session = require ('express-session') // utk menyimpan data kedalam nodeJS
+const flash = require ('express-flash') // utk memunculkan alert flash
 // const { Client } = require('pg');
 // const { copyDone } = require('pg-protocol/dist/messages');
 // const { request } = require('http');
@@ -16,7 +16,7 @@ const port = 12000 // 4.utk mendeklar variabel portnya berapa
 
 app.set('view engine', 'hbs') // untuk menggunakan setingan view engine template enginenya, dari npm hbs, lalu rename file html menjadi hbs
 app.use('/assets', express.static(__dirname + '/assets')) // utk node js agar mendetect path dari css di folder assets, agar bisa combine dengan file hbs
-app.use('/uploads', express.static(__dirname + '/uploads'))
+app.use('/uploads', express.static(__dirname + '/uploads')) // utk convert path folder uploads
 app.use(express.urlencoded({extended: false})) // supaya tidak undefined dalam console.log, kita isikan ini, karena data masih berupa object, maka harus diisi url encodenya dalam express
 app.use(flash()) // utk menggunakan flash, gunanya adalah utk mengirimkan alert flashnya secara langsung
 app.use(session({ // isian ini udah pakem dari npm express-session
@@ -24,41 +24,18 @@ app.use(session({ // isian ini udah pakem dari npm express-session
     resave: false,
     saveUninitialized: true,
     cookie: { 
-        maxAge: 24 * 60 * 60 * 1000, 
+        maxAge: 24 * 60 * 60 * 1000, // ini adalah fungsinya utk membuat masa waktu user login, misal ini adalah 24 jam atau 1 hari
     },
-     // ini adalah fungsinya utk membuat masa waktu user login, misal ini adalah 24 jam atau 1 hari
     }))
+
     const db=require('./connection/db') //lakukan import dari db.js di folder connection, karena telah melakukan exports
-    const upload = require ('./middleware/fileUpload')
-    
-    // let dataBlog = [ // data dummy atau data statis
-//     {
-//         projectName: "Dumbways project-1",
-//         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quibusdam maxime iure sapiente magnam natus odio voluptatum magni quae accusamus.",
-//         technologies1: "fa-js",
-//         technologies2: "fa-php",
-//         technologies3: "fa-react",
-//         technologies4: "fa-node-js",
-//         postAt: new Date(),
-//         startDate: "2022-08-21",
-//         endDate: "2022-09-22",
-//     }
-// ]
+    const upload = require ('./middleware/fileUpload') 
 
 db.connect ((err, client, done) => { //pakai cara seperti ini yakni db.connect ditaruk di atas sendiri dan ditutup di akhir app, guna utk efisiensi, sebelumnya masuk di tiap tiap app
 
 app.get( '/', (request, response) => { //jadi ketika ada yang akses routing / ini, maka dia akan melakukan apa di anonymous functionnya, yang dimana memiliki 2 parameter, request dan response
     console.log(request.session);
-    // console.log(dataBlog);
 
-    // let data=dataBlog.map((item) => { //sudah sesuai pakem dari si looping map
-    //     return { //...item adalah split operator utk mengeluarkan data si item, kalau kita mau memanipulasi dataBlog nya
-    //         ...item,
-    //         postAt: getFullTime(item.postAt),
-    //         duration: getDistanceTime(new Date(item.startDate), new Date(item.endDate)),
-    //     } 
-    // })
-    // console.log(data)
     //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
         if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam connection databasenya
         //lalu kita lakukan query
