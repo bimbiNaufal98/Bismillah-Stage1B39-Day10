@@ -262,11 +262,6 @@ app.get( '/myproject-detail/:id', (request, response) => { //:name ini bisa diis
             })
             // console.log(dataBlog2)
 
-            if(!request.session.user) {
-                request.flash('danger', 'Harap login terlebih dahulu')
-                return response.redirect ('/login')
-            }
-
             // response.render ('index', {dataBlog: dataBlog2}) // dataBlog: data adalah pemamnggilan utk let data diatas
             response.render ('myproject-detail', {data: dataBlog2[0], user: request.session.user, isLogin: request.session.isLogin}) //{data} aslinya ditaruk di dalam buka kurung
         })
