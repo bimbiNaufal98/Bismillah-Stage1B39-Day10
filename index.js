@@ -60,7 +60,9 @@ app.get( '/', (request, response) => { //jadi ketika ada yang akses routing / in
     //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
         if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam connection databasenya
         //lalu kita lakukan query
-        client.query('SELECT * FROM public.tb_projects ORDER BY id DESC;', (err, result) => {
+        const query = 'SELECT tb_projects.id, tb_projects.name, tb_projects.start_date, tb_projects.end_date, tb_projects.description, tb_projects.technologies, tb_projects.image, tb_users.name as author FROM public.tb_projects LEFT JOIN tb_users ON tb_projects.author = tb_users.id ORDER BY tb_projects.id DESC'
+
+        client.query(query, (err, result) => {
             if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam query databasenya, dan jika tidak kita gunakan if {err} ini maka akan terus lanjut saja
             
             // console.log(result.rows);
@@ -110,8 +112,8 @@ app.post( '/myproject', (request, response) => {
    //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
         if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam connection databasenya
         //lalu kita lakukan query
-        let query=`INSERT INTO public.tb_projects(name, start_date, end_date, description, technologies, image) VALUES
-                        ('${projectName}', '${startDate}', '${endDate}', '${description}', '{"${technologies1}", "${technologies2}", "${technologies3}", "${technologies4}"}', '${images}')`
+        let query=`INSERT INTO public.tb_projects(name, start_date, end_date, description, technologies, image, author) VALUES
+                        ('${projectName}', '${startDate}', '${endDate}', '${description}', '{"${technologies1}", "${technologies2}", "${technologies3}", "${technologies4}"}', '${images}', '${request.session.user.id}')`
         
         client.query(query, (err, result) => {
             if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam query databasenya, dan jika tidak kita gunakan if {err} ini maka akan terus lanjut saja
@@ -363,13 +365,14 @@ app.post( '/login', (request, response) => { //jadi ketika ada yang akses routin
 })
 
 app.get( '/logout', (request, response) => { //jadi ketika ada yang akses routing / ini, maka dia akan melakukan apa di anonymous functionnya, yang dimana memiliki 2 parameter, request dan response
+    
     if(!request.session.user) {
         request.flash('danger', 'Harap login terlebih dahulu')
         return response.redirect ('/login')
     }
     
     request.session.destroy() //cara utk menghapus session dan kembali ke login
-
+    
     response.redirect ('/login')
 })
 
@@ -380,12 +383,12 @@ function getFullTime(time){
 
     let month = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-    let date = time.getDate()
-    let monthIndex = time.getMonth()
-    let year = time.getFullYear()
+    let date = new Date(time).getDate()
+    let monthIndex = new Date(time).getMonth()
+    let year = new Date(time).getFullYear()
 
-    let hours = time.getHours()
-    let minutes = time.getMinutes()
+    let hours = new Date(time).getHours()
+    let minutes = new Date(time).getMinutes()
 
     // console.log(date);
     // console.log(month[monthIndex]);
@@ -410,12 +413,12 @@ function getFullTime2(time){
 
     let month = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-    let date = time.getDate()
-    let monthIndex = time.getMonth()
-    let year = time.getFullYear()
+    let date = new Date(time).getDate()
+    let monthIndex = new Date(time).getMonth()
+    let year = new Date(time).getFullYear()
 
-    let hours = time.getHours()
-    let minutes = time.getMinutes()
+    let hours = new Date(time).getHours()
+    let minutes = new Date(time).getMinutes()
 
     // console.log(date);
     // console.log(month[monthIndex]);
@@ -440,12 +443,12 @@ function getFullTime3(time){
 
     let month = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
 
-    let date = time.getDate()
-    let monthIndex = time.getMonth()
-    let year = time.getFullYear()
+    let date = new Date(time).getDate()
+    let monthIndex = new Date(time).getMonth()
+    let year = new Date(time).getFullYear()
 
-    let hours = time.getHours()
-    let minutes = time.getMinutes()
+    let hours = new Date(time).getHours()
+    let minutes = new Date(time).getMinutes()
 
     // console.log(date);
     // console.log(month[monthIndex]);
