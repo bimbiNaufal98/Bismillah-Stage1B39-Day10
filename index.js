@@ -16,6 +16,7 @@ const port = 12000 // 4.utk mendeklar variabel portnya berapa
 
 app.set('view engine', 'hbs') // untuk menggunakan setingan view engine template enginenya, dari npm hbs, lalu rename file html menjadi hbs
 app.use('/assets', express.static(__dirname + '/assets')) // utk node js agar mendetect path dari css di folder assets, agar bisa combine dengan file hbs
+app.use('/uploads', express.static(__dirname + '/uploads'))
 app.use(express.urlencoded({extended: false})) // supaya tidak undefined dalam console.log, kita isikan ini, karena data masih berupa object, maka harus diisi url encodenya dalam express
 app.use(flash()) // utk menggunakan flash, gunanya adalah utk mengirimkan alert flashnya secara langsung
 app.use(session({ // isian ini udah pakem dari npm express-session
@@ -26,10 +27,11 @@ app.use(session({ // isian ini udah pakem dari npm express-session
         maxAge: 24 * 60 * 60 * 1000, 
     },
      // ini adalah fungsinya utk membuat masa waktu user login, misal ini adalah 24 jam atau 1 hari
-}))
-const db=require('./connection/db') //lakukan import dari db.js di folder connection, karena telah melakukan exports
-
-// let dataBlog = [ // data dummy atau data statis
+    }))
+    const db=require('./connection/db') //lakukan import dari db.js di folder connection, karena telah melakukan exports
+    const upload = require ('./middleware/fileUpload')
+    
+    // let dataBlog = [ // data dummy atau data statis
 //     {
 //         projectName: "Dumbways project-1",
 //         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis quibusdam maxime iure sapiente magnam natus odio voluptatum magni quae accusamus.",
@@ -60,9 +62,25 @@ app.get( '/', (request, response) => { //jadi ketika ada yang akses routing / in
     //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
         if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam connection databasenya
         //lalu kita lakukan query
-        const query = 'SELECT tb_projects.id, tb_projects.name, tb_projects.start_date, tb_projects.end_date, tb_projects.description, tb_projects.technologies, tb_projects.image, tb_users.name as author FROM public.tb_projects LEFT JOIN tb_users ON tb_projects.author = tb_users.id ORDER BY tb_projects.id DESC'
+        
+        let author = request.session.user ? request.session.user.id : ''
+            
+            const queryFilter = `SELECT
+            tb_projects.id, tb_projects.name, tb_projects.start_date, tb_projects.end_date,
+            tb_projects.description, tb_projects.technologies, tb_projects.image, tb_users.name as author
+            FROM public.tb_projects LEFT JOIN tb_users ON tb_projects.author = tb_users.id
+            WHERE author=${author}
+            ORDER BY tb_projects.id DESC`
 
-        client.query(query, (err, result) => {
+            const query = `SELECT
+            tb_projects.id, tb_projects.name, tb_projects.start_date, tb_projects.end_date,
+            tb_projects.description, tb_projects.technologies, tb_projects.image, tb_users.name as author
+            FROM public.tb_projects LEFT JOIN tb_users ON tb_projects.author = tb_users.id
+            ORDER BY tb_projects.id DESC`
+        
+        const filterData = request.session.user ? queryFilter : query
+        
+        client.query(filterData, (err, result) => {
             if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam query databasenya, dan jika tidak kita gunakan if {err} ini maka akan terus lanjut saja
             
             // console.log(result.rows);
@@ -94,7 +112,7 @@ app.get ( '/myproject', (request, response) => {
     response.render ('myproject', {user: request.session.user, isLogin: request.session.isLogin})
 })
 
-app.post( '/myproject', (request, response) => {
+app.post( '/myproject', upload.single('inputImage'), (request, response) => {
     // console.log(request.body)
     
     let projectName = request.body.inputProject
@@ -107,14 +125,17 @@ app.post( '/myproject', (request, response) => {
     let technologies4 = request.body.inputTechnologiesNodeJs
     let images = request.body.inputImage
 
+    const image = request.file.filename
     // let = {inputProject: projectName, inputStartDate: startDate} = request.body , atau bisa juga dngan cara seperti ini
 
    //jadi didalam connect datanya akan disimpan kedalam client sama seperti fungsinya dengan app.get, nah jika didalam connect datanya tidak terhubung ke dalam database maka akan disimpan di dalam err
         if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam connection databasenya
         //lalu kita lakukan query
         let query=`INSERT INTO public.tb_projects(name, start_date, end_date, description, technologies, image, author) VALUES
-                        ('${projectName}', '${startDate}', '${endDate}', '${description}', '{"${technologies1}", "${technologies2}", "${technologies3}", "${technologies4}"}', '${images}', '${request.session.user.id}')`
+                        ('${projectName}', '${startDate}', '${endDate}', '${description}', '{"${technologies1}", "${technologies2}", "${technologies3}", "${technologies4}"}', '${image}', '${request.session.user.id}')`
         
+        // console.log(request.file.filename);
+
         client.query(query, (err, result) => {
             if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam query databasenya, dan jika tidak kita gunakan if {err} ini maka akan terus lanjut saja
 
@@ -139,7 +160,7 @@ app.get( '/update-myproject/:idParams', (request, response) => {
             if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam query databasenya, dan jika tidak kita gunakan if {err} ini maka akan terus lanjut saja
             
             let data=result.rows // utk menampilkan ke object properties nya, bukan lagi array object yang tampail di console log nya
-            // console.table(data[0]);
+            console.table(data[0]);
 
             dataBlog3=data.map((item) => { //fungsi map adalah utk memanipulasi datanya, bisa dinamis
                 return {
@@ -150,7 +171,7 @@ app.get( '/update-myproject/:idParams', (request, response) => {
                 }
             })
 
-            console.table(dataBlog3[0]);
+            console.log(dataBlog3[0]);
 
             if(!request.session.user) {
                 request.flash('danger', 'Harap login terlebih dahulu')
@@ -468,7 +489,7 @@ function getFullTime3(time){
     }
     
     // 05 12 2022 09.04
-    let fullTime = `${month[monthIndex]}/${date}/${year}`
+    let fullTime = `${date}-${month[monthIndex]}-${year}`
     // console.log(fullTime);
     return fullTime
 }
