@@ -134,7 +134,7 @@ app.get( '/update-myproject/:idParams', (request, response) => {
         let query=`SELECT * FROM public.tb_projects WHERE id=${id}`
 
         client.query(query, (err, result) => {
-            if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam query databasenya, dan jika tidak kita gunakan if {err} ini maka akan terus lanjut saja
+            if (err) throw err 
             
             let data=result.rows // utk menampilkan ke object properties nya, bukan lagi array object yang tampail di console log nya
             console.table(data[0]);
@@ -184,7 +184,7 @@ app.post('/update-myproject/:idParams', upload.single('inputImage'), (request, r
                     WHERE id='${id}';`
 
         client.query(query, (err, result) => {
-            if (err) throw err //gunanya adalah utk melihat apakah ada error ataukah tidak dalam query databasenya, dan jika tidak kita gunakan if {err} ini maka akan terus lanjut saja
+            if (err) throw err 
 
             console.table(query);
 
@@ -199,18 +199,6 @@ app.get( '/contact', (request, response) => {
 
 app.get( '/myproject-detail/:id', (request, response) => { //:name ini bisa diisikan apa saja, karena menjadi penampung si paramsnya, maka nanti yang muncul di console.log nya adalah name : bimbi-naufal sesuai yang diisikan oleh user
 
-    // let index=request.params.index // agar yang diisi oleh user ini yakni bimbi-naufal ini keluar dari console.log object, maka kita kasih titik setelah params.name
-    // // console.log(id)
-
-    // let data= dataBlog[index]
-
-    // data= {
-    //     projectName: data.projectName,
-    //     startDate: data.startDate,
-    //     endDate: data.endDate,
-    //     duration: getDistanceTime(new Date(data.startDate), new Date(data.endDate)),
-    //     description: data.description
-    // }
 
     let id=request.params.id
 
